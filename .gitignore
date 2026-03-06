@@ -1,0 +1,31 @@
+# Large files – distributed via GitHub Releases
+dist/
+build/
+release/ClassTranscribe.dmg
+
+# Downloaded AI models (too large for git)
+models/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# macOS
+.DS_Store
+*.DS_Store
+__MACOSX/
+
+# PyInstaller
+*.spec
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
