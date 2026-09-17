@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12BB97B9D06149D73CD2D1A4 /* WhisperCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1EBD598AC579BC64B2399280 /* WhisperCore */; };
+		226428E4AB5D55FDB4FF44C8 /* ServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105461F5A649F9E796D0BACD /* ServerClient.swift */; };
+		26571C976BEEF241D639795C /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92700816D6EFE0DD2A73A9A7 /* HistoryStore.swift */; };
+		2BA40F28E982DDCC114D6D47 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11E8E436629319CE4DFEE2 /* Brand.swift */; };
+		47FB91A87AB25A32BF86E6DB /* ServerHistorySync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62382F40E705AFB4279F4FBE /* ServerHistorySync.swift */; };
+		557EE9A643E291240DC73C44 /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C2FD9965F979263E367FE /* MainWindowView.swift */; };
+		7E671ADD3BB597CDA1C524A9 /* ServerTranscriptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E0A6F2EEE8F1B7B301EF6 /* ServerTranscriptParser.swift */; };
+		96A7CB7E289140D133A13432 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7CE463439F8648A5E0929CEE /* AppIcon.icns */; };
+		EA3A4EB5D38F448C51B7079D /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C832E6D7716BCD5526F779 /* AudioRecorder.swift */; };
+		EB7A7A0B5F213F3A56564274 /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E40F55DB302950AAC1D011 /* RecordingController.swift */; };
+		ED5D15561C3323D2BEBFDB46 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B89A0EC141D3E0585CEB8 /* HotkeyManager.swift */; };
+		F0CE605E63BFF35623EF0E22 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973AD24F06396886D5C8BDDC /* TranscriptionService.swift */; };
+		F5D475309D18BEC53FC3D653 /* StealthWhisperMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C2E86E8197FB1F3FA13B3B /* StealthWhisperMacApp.swift */; };
+		F69D0E29EE9B335E745821A3 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 967F3C4A0337A68BDB9B3B17 /* AppIcon.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		105461F5A649F9E796D0BACD /* ServerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerClient.swift; sourceTree = "<group>"; };
+		3EF078B324479C6C244A84E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		40C2E86E8197FB1F3FA13B3B /* StealthWhisperMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StealthWhisperMacApp.swift; sourceTree = "<group>"; };
+		40C832E6D7716BCD5526F779 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		62382F40E705AFB4279F4FBE /* ServerHistorySync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerHistorySync.swift; sourceTree = "<group>"; };
+		7B963AA06A11053E46E06695 /* StealthWhisperMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StealthWhisperMac.entitlements; sourceTree = "<group>"; };
+		7CE463439F8648A5E0929CEE /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		92700816D6EFE0DD2A73A9A7 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
+		967F3C4A0337A68BDB9B3B17 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		973AD24F06396886D5C8BDDC /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
+		A7CF91B0BCCEE3B4A62D6BBA /* StealthWhisperMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StealthWhisperMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB11E8E436629319CE4DFEE2 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		D47E0A6F2EEE8F1B7B301EF6 /* ServerTranscriptParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTranscriptParser.swift; sourceTree = "<group>"; };
+		DE4C2FD9965F979263E367FE /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
+		E25E2E6219FA47924566AB87 /* WhisperCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WhisperCore; path = ../WhisperCore; sourceTree = SOURCE_ROOT; };
+		EC4B89A0EC141D3E0585CEB8 /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
+		F7E40F55DB302950AAC1D011 /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC9EC158203FC3395486A067 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12BB97B9D06149D73CD2D1A4 /* WhisperCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		31931CC912E91A36F0A06A29 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				BB11E8E436629319CE4DFEE2 /* Brand.swift */,
+				92700816D6EFE0DD2A73A9A7 /* HistoryStore.swift */,
+				62382F40E705AFB4279F4FBE /* ServerHistorySync.swift */,
+				D47E0A6F2EEE8F1B7B301EF6 /* ServerTranscriptParser.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		6FA56BE4DDE80CFE29DF99B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A7CF91B0BCCEE3B4A62D6BBA /* StealthWhisperMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A3230EA6FA699C0A8D10A56 /* whisper-apps */ = {
+			isa = PBXGroup;
+			children = (
+				F35C9DDEC5E9EA79315EE071 /* StealthWhisperiOS */,
+			);
+			name = "whisper-apps";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		887F9FA6A2D80493FC2BA187 = {
+			isa = PBXGroup;
+			children = (
+				C533242118798A3A18EC0907 /* Packages */,
+				A47920C6E377261D363F2B7C /* Resources */,
+				DC004B00DD8A55BE664F61A8 /* Sources */,
+				7A3230EA6FA699C0A8D10A56 /* whisper-apps */,
+				6FA56BE4DDE80CFE29DF99B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		99FF8463A72FAC1ECD43BF7A /* StealthWhisperMac */ = {
+			isa = PBXGroup;
+			children = (
+				40C832E6D7716BCD5526F779 /* AudioRecorder.swift */,
+				EC4B89A0EC141D3E0585CEB8 /* HotkeyManager.swift */,
+				3EF078B324479C6C244A84E2 /* Info.plist */,
+				DE4C2FD9965F979263E367FE /* MainWindowView.swift */,
+				F7E40F55DB302950AAC1D011 /* RecordingController.swift */,
+				105461F5A649F9E796D0BACD /* ServerClient.swift */,
+				7B963AA06A11053E46E06695 /* StealthWhisperMac.entitlements */,
+				40C2E86E8197FB1F3FA13B3B /* StealthWhisperMacApp.swift */,
+				973AD24F06396886D5C8BDDC /* TranscriptionService.swift */,
+			);
+			path = StealthWhisperMac;
+			sourceTree = "<group>";
+		};
+		A47920C6E377261D363F2B7C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7CE463439F8648A5E0929CEE /* AppIcon.icns */,
+				967F3C4A0337A68BDB9B3B17 /* AppIcon.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C533242118798A3A18EC0907 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				E25E2E6219FA47924566AB87 /* WhisperCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		DC004B00DD8A55BE664F61A8 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				99FF8463A72FAC1ECD43BF7A /* StealthWhisperMac */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F35C9DDEC5E9EA79315EE071 /* StealthWhisperiOS */ = {
+			isa = PBXGroup;
+			children = (
+				31931CC912E91A36F0A06A29 /* Shared */,
+			);
+			path = StealthWhisperiOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		72E5A9890450513C6539E235 /* StealthWhisperMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6960976BD922417427FAF1E4 /* Build configuration list for PBXNativeTarget "StealthWhisperMac" */;
+			buildPhases = (
+				E4350C6F9E59F461AFFEC69E /* Sources */,
+				6DF349145E6206110F28A79B /* Resources */,
+				EC9EC158203FC3395486A067 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StealthWhisperMac;
+			packageProductDependencies = (
+				1EBD598AC579BC64B2399280 /* WhisperCore */,
+			);
+			productName = StealthWhisperMac;
+			productReference = A7CF91B0BCCEE3B4A62D6BBA /* StealthWhisperMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71AE83A81BBFD922F2AA303B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					72E5A9890450513C6539E235 = {
+						DevelopmentTeam = 9H5KVJSU9S;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C8C73C4722672B1B47309F2B /* Build configuration list for PBXProject "StealthWhisperMac" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 887F9FA6A2D80493FC2BA187;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				63C347629DB4EB612363BA1B /* XCLocalSwiftPackageReference "../WhisperCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 6FA56BE4DDE80CFE29DF99B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				72E5A9890450513C6539E235 /* StealthWhisperMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DF349145E6206110F28A79B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96A7CB7E289140D133A13432 /* AppIcon.icns in Resources */,
+				F69D0E29EE9B335E745821A3 /* AppIcon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E4350C6F9E59F461AFFEC69E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA3A4EB5D38F448C51B7079D /* AudioRecorder.swift in Sources */,
+				2BA40F28E982DDCC114D6D47 /* Brand.swift in Sources */,
+				26571C976BEEF241D639795C /* HistoryStore.swift in Sources */,
+				ED5D15561C3323D2BEBFDB46 /* HotkeyManager.swift in Sources */,
+				557EE9A643E291240DC73C44 /* MainWindowView.swift in Sources */,
+				EB7A7A0B5F213F3A56564274 /* RecordingController.swift in Sources */,
+				226428E4AB5D55FDB4FF44C8 /* ServerClient.swift in Sources */,
+				47FB91A87AB25A32BF86E6DB /* ServerHistorySync.swift in Sources */,
+				7E671ADD3BB597CDA1C524A9 /* ServerTranscriptParser.swift in Sources */,
+				F5D475309D18BEC53FC3D653 /* StealthWhisperMacApp.swift in Sources */,
+				F0CE605E63BFF35623EF0E22 /* TranscriptionService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0AED8C4D161EE8AC35E63E76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		29CACBF0202FE17F07A4DB31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BC3A00F09FBE20A3DFDE8010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/StealthWhisperMac/StealthWhisperMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 9H5KVJSU9S;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Sources/StealthWhisperMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stealth.whisper.mac;
+				PRODUCT_NAME = "Stealth Whisper";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		FDD72F209AD7A3A22F3AC1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/StealthWhisperMac/StealthWhisperMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 9H5KVJSU9S;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Sources/StealthWhisperMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stealth.whisper.mac;
+				PRODUCT_NAME = "Stealth Whisper";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6960976BD922417427FAF1E4 /* Build configuration list for PBXNativeTarget "StealthWhisperMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDD72F209AD7A3A22F3AC1E7 /* Debug */,
+				BC3A00F09FBE20A3DFDE8010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C8C73C4722672B1B47309F2B /* Build configuration list for PBXProject "StealthWhisperMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29CACBF0202FE17F07A4DB31 /* Debug */,
+				0AED8C4D161EE8AC35E63E76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		63C347629DB4EB612363BA1B /* XCLocalSwiftPackageReference "../WhisperCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../WhisperCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EBD598AC579BC64B2399280 /* WhisperCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WhisperCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 71AE83A81BBFD922F2AA303B /* Project object */;
+}

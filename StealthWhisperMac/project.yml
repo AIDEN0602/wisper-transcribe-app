@@ -1,0 +1,68 @@
+name: StealthWhisperMac
+options:
+  bundleIdPrefix: com.stealth
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+
+packages:
+  WhisperCore:
+    path: ../WhisperCore
+
+targets:
+  StealthWhisperMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Sources/StealthWhisperMac
+      # The one canonical history implementation, shared with the iPhone and
+      # Watch apps so all three read and write the same iCloud files.
+      - path: ../StealthWhisperiOS/Shared/HistoryStore.swift
+      - path: ../StealthWhisperiOS/Shared/ServerHistorySync.swift
+      - path: ../StealthWhisperiOS/Shared/ServerTranscriptParser.swift
+      - path: ../StealthWhisperiOS/Shared/Brand.swift
+      - path: Resources
+    dependencies:
+      - package: WhisperCore
+        product: WhisperCore
+    info:
+      path: Sources/StealthWhisperMac/Info.plist
+      properties:
+        CFBundleDisplayName: Stealth Whisper
+        CFBundleIconFile: AppIcon
+        LSMinimumSystemVersion: "14.0"
+        NSMicrophoneUsageDescription: "Stealth Whisper records audio so it can transcribe it on this device."
+        NSHumanReadableCopyright: ""
+    entitlements:
+      path: Sources/StealthWhisperMac/StealthWhisperMac.entitlements
+      properties:
+        # iCloud on macOS is only available to sandboxed apps.
+        com.apple.security.app-sandbox: true
+        com.apple.security.device.audio-input: true
+        com.apple.security.network.client: true
+        com.apple.security.files.user-selected.read-write: true
+        com.apple.developer.icloud-container-identifiers:
+          - iCloud.com.stealth.whisper
+        com.apple.developer.icloud-services:
+          - CloudDocuments
+        # Without this key `url(forUbiquityContainerIdentifier:)` returns nil
+        # no matter what the other two say — it is the entitlement iCloud
+        # Documents (as opposed to CloudKit) actually checks.
+        com.apple.developer.ubiquity-container-identifiers:
+          - iCloud.com.stealth.whisper
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.stealth.whisper.mac
+        PRODUCT_NAME: Stealth Whisper
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: 9H5KVJSU9S
+        ENABLE_HARDENED_RUNTIME: YES
+        SWIFT_VERSION: "5.0"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        MARKETING_VERSION: "0.2.0"
+        CURRENT_PROJECT_VERSION: "2"
+        COMBINE_HIDPI_IMAGES: YES
+    scheme:
+      testTargets: []
+      gatherCoverageData: false

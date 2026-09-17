@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sister-whisper-web",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-05",
+  "compatibility_flags": ["nodejs_compat"],
+  "ai": {
+    "binding": "AI"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DATA",
+      "id": "e0cee1a3d0d34463a3a9cea1b4ce0d00"
+    }
+  ],
+  "observability": {
+    "enabled": false,
+    "logs": {
+      "invocation_logs": false
+    }
+  }
+}

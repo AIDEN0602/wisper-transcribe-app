@@ -1,0 +1,13 @@
+.DS_Store
+.build/
+*.xcuserstate
+xcuserdata/
+DerivedData/
+.swiftpm/
+dist/
+MiniTerm/build/
+build/
+build-*/
+
+# Local working copy of the mini's subwhisper pipeline (holds service keys)
+reference/subwhisper/
