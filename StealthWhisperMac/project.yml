@@ -30,6 +30,8 @@ targets:
       path: Sources/StealthWhisperMac/Info.plist
       properties:
         CFBundleDisplayName: Stealth Whisper
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         CFBundleIconFile: AppIcon
         LSMinimumSystemVersion: "14.0"
         NSMicrophoneUsageDescription: "Stealth Whisper records audio so it can transcribe it on this device."
@@ -60,8 +62,8 @@ targets:
         ENABLE_HARDENED_RUNTIME: YES
         SWIFT_VERSION: "5.0"
         MACOSX_DEPLOYMENT_TARGET: "14.0"
-        MARKETING_VERSION: "0.2.0"
-        CURRENT_PROJECT_VERSION: "2"
+        MARKETING_VERSION: "0.3.0"
+        CURRENT_PROJECT_VERSION: "3"
         COMBINE_HIDPI_IMAGES: YES
     scheme:
       testTargets: []

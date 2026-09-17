@@ -17,6 +17,36 @@ Worker is included for browser and iPhone Shortcut uploads.
 | `StealthWhisperWeb/` | Password-protected Cloudflare Worker transcription website |
 | `SisterWhisperWeb/` | A second isolated Worker configuration for a separate user |
 
+## Install the apps
+
+### Mac
+
+**[Download Stealth Whisper 0.3.0 for Mac](https://github.com/AIDEN0602/wisper-transcribe-app/releases/download/v0.3.0/Stealth-Whisper-0.3.0.dmg)**
+
+The app is signed with a Developer ID certificate and notarized by Apple.
+Open the DMG, drag **Stealth Whisper** to **Applications**, and launch it.
+The first-run guide will:
+
+1. start the one-time Whisper model download,
+2. let you use local-only mode or enter a private server URL, and
+3. explain microphone permission and the `⌥⌘R` recording shortcut.
+
+The initial model download can take several minutes. Recording and local
+transcription work after the model status changes to ready.
+
+### iPhone and Apple Watch
+
+Build 10 was uploaded to TestFlight on September 17, 2026. Install
+[Apple TestFlight](https://apps.apple.com/app/testflight/id899247664) on the
+iPhone, sign in with an invited Apple ID, and install or update **Stealth
+Whisper** from the TestFlight app. The paired Watch app is included in the same
+build and can be enabled from the iPhone Watch app.
+
+TestFlight does not provide a universal download URL for an internal testing
+group. The Apple ID must first be added as an internal tester in App Store
+Connect. A future public TestFlight link can be added after Apple approves an
+external beta group.
+
 ## How it works
 
 ```text
@@ -71,6 +101,16 @@ xcodebuild \
 ```
 
 The default global recording shortcut is `⌥⌘R`.
+
+To create the signed, Apple-notarized release DMG with the Xcode account on the
+Mac:
+
+```sh
+StealthWhisperMac/scripts/build_release_dmg.sh 0.3.0 3
+```
+
+The result is written to
+`StealthWhisperMac/build/Stealth-Whisper-0.3.0.dmg`.
 
 ## Build the iPhone, Watch, and keyboard apps
 

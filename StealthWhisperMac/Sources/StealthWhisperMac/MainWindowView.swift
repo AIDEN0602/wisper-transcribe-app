@@ -12,6 +12,8 @@ struct MainWindowView: View {
     @State private var expanded: Set<UUID> = []
     @State private var selectedEntryID: UUID?
     @State private var showRecovery = false
+    @State private var showSetup = false
+    @AppStorage("MacOnboardingCompletedV1") private var onboardingCompleted = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -22,6 +24,13 @@ struct MainWindowView: View {
         .preferredColorScheme(.dark)
         .frame(minWidth: 720, minHeight: 520)
         .onAppear { controller.refreshUnfinished() }
+        .onAppear {
+            if !onboardingCompleted { showSetup = true }
+        }
+        .sheet(isPresented: $showSetup) {
+            MacOnboardingView(isPresented: $showSetup)
+                .environmentObject(controller)
+        }
         .onChange(of: controller.isRecording) { _, recording in
             if recording { playback.stop() }
         }
@@ -42,6 +51,13 @@ struct MainWindowView: View {
                         .font(.title3.weight(.semibold))
                 }
                 Spacer()
+                Button {
+                    showSetup = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                .buttonStyle(.borderless)
+                .help("Setup")
                 modelMenu
             }
 
@@ -115,6 +131,7 @@ struct MainWindowView: View {
     }
 
     private var serverText: String {
+        if !controller.serverEnabled { return "Local only · private server is off" }
         if controller.pendingUploadCount > 0 {
             return "\(controller.pendingUploadCount) recording\(controller.pendingUploadCount == 1 ? "" : "s") saved · sharing will retry automatically"
         }

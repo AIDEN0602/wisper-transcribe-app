@@ -18,7 +18,20 @@ import Foundation
 @MainActor
 final class ServerHistorySync {
 
-    static let baseURL = URL(string: "https://mj-macmini.tail1611c2.ts.net")!
+    static let defaultBaseURL = URL(string: "https://mj-macmini.tail1611c2.ts.net")!
+    static let baseURLDefaultsKey = "PrivateTranscriptionServerURL"
+
+    /// The native apps keep a working default for existing installations,
+    /// while the Mac onboarding flow can replace it for a different server.
+    static var baseURL: URL {
+        guard let saved = UserDefaults.standard.string(forKey: baseURLDefaultsKey),
+              let url = URL(string: saved),
+              let scheme = url.scheme?.lowercased(),
+              scheme == "https" || scheme == "http",
+              url.host != nil
+        else { return defaultBaseURL }
+        return url
+    }
 
     private let session: URLSession = {
         let config = URLSessionConfiguration.ephemeral

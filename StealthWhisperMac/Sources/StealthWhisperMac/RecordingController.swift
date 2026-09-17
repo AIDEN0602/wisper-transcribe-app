@@ -20,6 +20,7 @@ final class RecordingController: ObservableObject {
     @Published private(set) var isTranscribing = false
     @Published private(set) var unfinished: [UnfinishedRecording] = []
     @Published private(set) var pendingUploadCount = 0
+    @Published private(set) var serverEnabled: Bool
     /// Last failure, shown as a banner until dismissed or superseded.
     @Published var lastError: String?
     /// Set when a transcript is copied, so the UI can confirm it briefly.
@@ -41,6 +42,8 @@ final class RecordingController: ObservableObject {
     private var processingURLs: Set<URL> = []
     private var isSharing = false
 
+    private static let serverEnabledDefaultsKey = "PrivateTranscriptionServerEnabled"
+
     /// A recording left in the staging folder because it was never
     /// transcribed — usually because the app was quit mid-recording.
     struct UnfinishedRecording: Identifiable, Equatable {
@@ -53,6 +56,9 @@ final class RecordingController: ObservableObject {
     }
 
     init() {
+        serverEnabled = UserDefaults.standard.object(forKey: Self.serverEnabledDefaultsKey) == nil
+            ? true
+            : UserDefaults.standard.bool(forKey: Self.serverEnabledDefaultsKey)
         hotkey.onHotkey = { [weak self] in self?.toggleRecording() }
         hotkey.register()
         transcription.onStateChange = { [weak self] state in
@@ -90,6 +96,10 @@ final class RecordingController: ObservableObject {
     /// Pulls finished jobs off the Mac mini into local history. Mac uploads
     /// are skipped: this device already saved them when it recorded them.
     func syncFromServer() async {
+        guard serverEnabled else {
+            serverReachable = nil
+            return
+        }
         // This also retries files whose earlier upload failed. Previously the
         // three-minute timer only downloaded history, so pending Mac audio
         // could remain stuck until another recording happened to finish.
@@ -100,6 +110,7 @@ final class RecordingController: ObservableObject {
     }
 
     var modelIsReady: Bool { ModelCatalog.isDownloaded(transcription.model) }
+    var serverURLString: String { ServerHistorySync.baseURL.absoluteString }
 
     /// One line describing the engine, for the window header.
     var engineSummary: String {
@@ -230,6 +241,7 @@ final class RecordingController: ObservableObject {
     /// failure and go out on the next attempt, so a mini that is asleep
     /// only ever delays sharing.
     private func uploadPending() async {
+        guard serverEnabled else { return }
         guard !isSharing else { return }
         isSharing = true
         defer { isSharing = false }
@@ -255,6 +267,31 @@ final class RecordingController: ObservableObject {
 
     func retrySharing() {
         Task { await syncFromServer() }
+    }
+
+    @discardableResult
+    func configureServer(enabled: Bool, urlString: String) async -> Bool {
+        let trimmed = urlString.trimmingCharacters(in: .whitespacesAndNewlines)
+        if enabled {
+            guard let url = URL(string: trimmed),
+                  let scheme = url.scheme?.lowercased(),
+                  scheme == "https" || scheme == "http",
+                  url.host != nil
+            else {
+                lastError = "Enter a complete server address beginning with https:// or http://."
+                return false
+            }
+            UserDefaults.standard.set(url.absoluteString, forKey: ServerHistorySync.baseURLDefaultsKey)
+        }
+        serverEnabled = enabled
+        UserDefaults.standard.set(enabled, forKey: Self.serverEnabledDefaultsKey)
+        serverReachable = nil
+        guard enabled else { return true }
+        serverReachable = await serverClient.isReachable()
+        if serverReachable == false {
+            lastError = "The server address was saved, but this Mac cannot reach it yet. Check Tailscale or the server URL."
+        }
+        return serverReachable == true
     }
 
     func retryUnfinished(_ item: UnfinishedRecording) {

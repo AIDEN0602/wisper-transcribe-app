@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		074A6821ABBC07FE17F66474 /* MacOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45584373E63A2102EDC2141C /* MacOnboardingView.swift */; };
 		12BB97B9D06149D73CD2D1A4 /* WhisperCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1EBD598AC579BC64B2399280 /* WhisperCore */; };
 		226428E4AB5D55FDB4FF44C8 /* ServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105461F5A649F9E796D0BACD /* ServerClient.swift */; };
 		26571C976BEEF241D639795C /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92700816D6EFE0DD2A73A9A7 /* HistoryStore.swift */; };
@@ -28,6 +29,7 @@
 		3EF078B324479C6C244A84E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		40C2E86E8197FB1F3FA13B3B /* StealthWhisperMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StealthWhisperMacApp.swift; sourceTree = "<group>"; };
 		40C832E6D7716BCD5526F779 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		45584373E63A2102EDC2141C /* MacOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOnboardingView.swift; sourceTree = "<group>"; };
 		62382F40E705AFB4279F4FBE /* ServerHistorySync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerHistorySync.swift; sourceTree = "<group>"; };
 		7B963AA06A11053E46E06695 /* StealthWhisperMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StealthWhisperMac.entitlements; sourceTree = "<group>"; };
 		7CE463439F8648A5E0929CEE /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				40C832E6D7716BCD5526F779 /* AudioRecorder.swift */,
 				EC4B89A0EC141D3E0585CEB8 /* HotkeyManager.swift */,
 				3EF078B324479C6C244A84E2 /* Info.plist */,
+				45584373E63A2102EDC2141C /* MacOnboardingView.swift */,
 				DE4C2FD9965F979263E367FE /* MainWindowView.swift */,
 				F7E40F55DB302950AAC1D011 /* RecordingController.swift */,
 				105461F5A649F9E796D0BACD /* ServerClient.swift */,
@@ -224,6 +227,7 @@
 				2BA40F28E982DDCC114D6D47 /* Brand.swift in Sources */,
 				26571C976BEEF241D639795C /* HistoryStore.swift in Sources */,
 				ED5D15561C3323D2BEBFDB46 /* HotkeyManager.swift in Sources */,
+				074A6821ABBC07FE17F66474 /* MacOnboardingView.swift in Sources */,
 				557EE9A643E291240DC73C44 /* MainWindowView.swift in Sources */,
 				EB7A7A0B5F213F3A56564274 /* RecordingController.swift in Sources */,
 				226428E4AB5D55FDB4FF44C8 /* ServerClient.swift in Sources */,
@@ -363,7 +367,7 @@
 				CODE_SIGN_ENTITLEMENTS = Sources/StealthWhisperMac/StealthWhisperMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9H5KVJSU9S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Sources/StealthWhisperMac/Info.plist;
@@ -372,7 +376,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stealth.whisper.mac;
 				PRODUCT_NAME = "Stealth Whisper";
 				SDKROOT = macosx;
@@ -387,7 +391,7 @@
 				CODE_SIGN_ENTITLEMENTS = Sources/StealthWhisperMac/StealthWhisperMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 9H5KVJSU9S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Sources/StealthWhisperMac/Info.plist;
@@ -396,7 +400,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stealth.whisper.mac;
 				PRODUCT_NAME = "Stealth Whisper";
 				SDKROOT = macosx;

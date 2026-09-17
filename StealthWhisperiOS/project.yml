@@ -30,7 +30,7 @@ targets:
       properties:
         CFBundleDisplayName: Stealth Whisper
         CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "9"
+        CFBundleVersion: "10"
         ITSAppUsesNonExemptEncryption: false
         CFBundleURLTypes:
           - CFBundleURLName: com.stealth.whisper.keyboard
@@ -87,7 +87,7 @@ targets:
       properties:
         CFBundleDisplayName: Stealth Whisper
         CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "9"
+        CFBundleVersion: "10"
         ITSAppUsesNonExemptEncryption: false
         NSExtension:
           NSExtensionAttributes:
@@ -129,7 +129,7 @@ targets:
       properties:
         CFBundleDisplayName: Stealth Whisper
         CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "9"
+        CFBundleVersion: "10"
         ITSAppUsesNonExemptEncryption: false
         NSMicrophoneUsageDescription: "Stealth Whisper needs microphone access to record audio on your wrist."
         UIBackgroundModes:
