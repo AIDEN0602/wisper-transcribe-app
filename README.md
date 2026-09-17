@@ -1,93 +1,169 @@
-# Whisper Apps
+# Stealth Whisper
 
-Native Apple clients for on-device speech transcription, replacing the
-Mac-mini server pipelines (`wisper`, `subwhisper`) so the server can
-eventually be turned off.
+Private speech-to-text apps for Mac, iPhone, Apple Watch, and the iOS keyboard.
+Record on any supported device, transcribe locally with WhisperKit, copy the
+result, and keep one shared history through iCloud. A separate Cloudflare
+Worker is included for browser and iPhone Shortcut uploads.
 
-## Packages
+## What is included
 
-| Path | What | Builds on Mac mini (CLT)? |
-| --- | --- | --- |
-| `WhisperCore/` | Shared Swift package: WhisperKit wrapper, model management, transcript formatting | ✅ `swift build` |
-| `StealthWhisperMac/` | macOS app (window + menu bar): ⌥⌘R → record → on-device transcribe → clipboard, history, shared with the other devices | ❌ needs Xcode (sandbox + iCloud entitlements require signing) |
-| `StealthWhisperiOS/` | iPhone + Watch apps (and the dictation keyboard) | ❌ needs Xcode |
-| `StealthWhisperWeb/` | Private Cloudflare Worker upload site for the first user | ✅ Node.js + Wrangler |
-| `SisterWhisperWeb/` | Independently configured Cloudflare Worker upload site for another user | ✅ Node.js + Wrangler |
+| Component | Purpose |
+| --- | --- |
+| `StealthWhisperMac/` | macOS window and menu bar app with global recording shortcut, local transcription, clipboard copy, audio playback, and history |
+| `StealthWhisperiOS/` | iPhone recorder, on-device transcription, history, settings, Watch companion, and voice keyboard extension |
+| `StealthWhisperiOS/StealthWhisperWatch/` | Wrist recording with a durable transfer queue to the paired iPhone and shared-history access |
+| `StealthWhisperiOS/StealthWhisperKeyboard/` | Voice-first keyboard surface that inserts the latest dictation at the active cursor |
+| `WhisperCore/` | Shared Swift package around WhisperKit, model management, transcript formatting, and SRT output |
+| `StealthWhisperWeb/` | Password-protected Cloudflare Worker transcription website |
+| `SisterWhisperWeb/` | A second isolated Worker configuration for a separate user |
 
-Both Xcode projects are generated from `project.yml` by xcodegen, installed
-at `~/.local/xcodegen/bin/xcodegen` (no Homebrew on these machines):
+## How it works
 
-```sh
-cd StealthWhisperMac && ~/.local/xcodegen/bin/xcodegen generate
-xcodebuild -project StealthWhisperMac.xcodeproj -scheme StealthWhisperMac \
-  -configuration Release -destination 'platform=macOS' \
-  -derivedDataPath build-mac -allowProvisioningUpdates build
+```text
+Mac microphone ───────────────┐
+                              ├─> WhisperKit on device ─> transcript + history
+iPhone microphone ────────────┤
+                              │
+Apple Watch ─> paired iPhone ─┘
+
+iOS voice keyboard ─> containing iPhone app ─> insert at active cursor
+
+Browser / iPhone Shortcut ─> Cloudflare Worker AI ─> encrypted 24-hour history
 ```
 
-Generate and build the iPhone, keyboard, and Watch targets:
+- Mac and iPhone transcription work locally after the selected model has been
+  downloaded once.
+- Watch audio is queued with WatchConnectivity and handed to the paired iPhone.
+  Pending files survive relaunch and are removed only after a confirmed handoff.
+- Mac, iPhone, and Watch read the same iCloud Documents history when the signed
+  apps have access to `iCloud.com.stealth.whisper`.
+- Server mode remains an optional fallback for the existing Mac mini workflow.
+- The web service is independent from the native app pipeline.
+
+## Requirements
+
+- macOS 14 or newer for the Mac app
+- iOS 17 or newer for the iPhone app and keyboard
+- watchOS 10 or newer for the Watch app
+- Xcode 26 or a compatible recent Xcode release
+- [XcodeGen](https://github.com/yonaskolb/XcodeGen)
+- An Apple Developer team for physical-device signing, iCloud, App Groups, and
+  TestFlight
+- Node.js 20 or newer and a Cloudflare account for the optional website
+
+## Build the Mac app
+
+The Xcode project is generated from `project.yml`. Change
+`DEVELOPMENT_TEAM` and bundle identifiers there before generating the project;
+changes made only in Xcode can be overwritten the next time XcodeGen runs.
+
+```sh
+cd StealthWhisperMac
+xcodegen generate
+xcodebuild \
+  -project StealthWhisperMac.xcodeproj \
+  -scheme StealthWhisperMac \
+  -configuration Debug \
+  -destination 'platform=macOS' \
+  -derivedDataPath build-mac \
+  -allowProvisioningUpdates \
+  build
+```
+
+The default global recording shortcut is `⌥⌘R`.
+
+## Build the iPhone, Watch, and keyboard apps
 
 ```sh
 cd StealthWhisperiOS
-~/.local/xcodegen/bin/xcodegen generate
-xcodebuild -project StealthWhisper.xcodeproj -scheme StealthWhisper \
-  -configuration Debug -destination 'generic/platform=iOS Simulator' \
-  CODE_SIGNING_ALLOWED=NO build
+xcodegen generate
+open StealthWhisper.xcodeproj
 ```
 
-Signing for a real iPhone, Apple Watch, TestFlight, and the iCloud container
-requires an Apple Developer team. Set the team in `project.yml`, regenerate the
-project, and then use Xcode or `xcodebuild -allowProvisioningUpdates`.
+In Xcode, select your Apple Developer team for the iPhone, Watch, and keyboard
+targets. Connect an unlocked iPhone with its paired Watch, select the iPhone as
+the run destination, and run the `StealthWhisper` scheme. The Watch app and
+keyboard extension are embedded in the iPhone app.
 
-## Private web transcription
+For a signing-free simulator build:
 
-The two Worker folders contain the same privacy-oriented upload service with
-separate names, secrets, and KV databases. Audio is processed in memory and is
-not written to KV. Completed transcripts are AES-GCM encrypted and expire from
-KV after 24 hours. The authenticated page can copy or download a transcript and
-can optionally deliver it through Telegram.
+```sh
+xcodebuild \
+  -project StealthWhisper.xcodeproj \
+  -scheme StealthWhisper \
+  -configuration Debug \
+  -destination 'generic/platform=iOS Simulator' \
+  CODE_SIGNING_ALLOWED=NO \
+  build
+```
 
-See [`docs/WEB_DEPLOYMENT.md`](docs/WEB_DEPLOYMENT.md) for the complete setup,
-deployment, cloning, iPhone Shortcut, and verification instructions.
+### Enable the voice keyboard
 
-## How the three apps share history
+1. Install and open Stealth Whisper on the iPhone.
+2. Go to **Settings → General → Keyboard → Keyboards → Add New Keyboard**.
+3. Add **Stealth Whisper** and enable **Full Access**.
+4. In the Stealth Whisper app, enable **Keyboard Session**.
+5. Return to a text field, switch to the Stealth Whisper keyboard, and use the
+   microphone button. The transcript is inserted directly at the cursor.
 
-One entry per transcript, `Documents/History/<uuid>.json`, written to the
-iCloud container `iCloud.com.stealth.whisper` when it is available and to a
-local folder when it is not. Two things make that actually work, and both
-were missing:
+iOS does not give custom keyboard extensions direct microphone access. The
+keyboard therefore coordinates with the containing app through the shared App
+Group while the keyboard session is enabled.
 
-- **`com.apple.developer.ubiquity-container-identifiers`.** Without it
-  `url(forUbiquityContainerIdentifier:)` returns nil no matter what the
-  other iCloud entitlements say. Every target needs it.
-- **The Mac mini as the path that always works.** It already stores every
-  finished job; `ServerHistorySync` imports them (`GET /jobs`, then
-  `GET /download/<job>/full_transcript.txt`) keyed by a job-derived UUID, so
-  importing repeatedly never duplicates. The Mac uploads its own recordings
-  there as `mac_*.m4a` for the phone and watch to pick up.
-
-## WhisperCore
+## Build and test the shared core
 
 ```sh
 cd WhisperCore
 swift build
-swift run whispercore-cli check                      # smoke tests (no XCTest under CLT)
-swift run whispercore-cli transcribe file.m4a --model tiny
+swift test
+swift run whispercore-cli check
+swift run whispercore-cli transcribe recording.m4a --model tiny
 ```
 
-- Models download on first use from HuggingFace `argmaxinc/whisperkit-coreml`
-  into `~/Library/Application Support/WhisperApps/Models/`.
-- `WhisperTranscriber` is an actor: `prepare()` (download + load), then
-  `transcribe(url, language:)` → `Transcript`.
-- `TranscriptFormatter` renders plain text, `[MM:SS - MM:SS]` lines
-  (matching the existing server output format), and SRT.
-- XCTest targets exist but only run on a machine with full Xcode.
+Whisper models download from `argmaxinc/whisperkit-coreml` on first use and are
+stored under `~/Library/Application Support/WhisperApps/Models/`.
 
-## Compatibility contracts with the existing pipelines
+## Create the private web service
 
-- iCloud container (upload fallback): `iCloud.com.stealth.whisper`, files land
-  in `Documents/` as `.m4a`; the Mac watches
-  `~/Library/Mobile Documents/iCloud~com~stealth~whisper/Documents/`.
-- Server upload fallback: `POST /upload` (multipart field `audio`, form fields
-  `diarize`, `express`) on the wisper Flask server, port 8080.
-- Transcript line format: `[MM:SS - MM:SS] text` (speaker-labelled variants
-  add `SPEAKER_XX:`).
+The included Cloudflare Worker accepts uploads from a password-protected page
+or an iPhone Shortcut. Audio is processed in memory and is not written to KV.
+Completed transcripts are AES-GCM encrypted and expire after 24 hours.
+
+```sh
+cd StealthWhisperWeb
+npm install
+npm test
+npm run check
+npx wrangler login
+npm run deploy
+```
+
+Every deployment needs its own KV namespace, website password, session secret,
+and Shortcut token. Do not commit any of those secret values.
+
+Read the complete guide before deploying:
+**[Cloudflare website and iPhone Shortcut setup](docs/WEB_DEPLOYMENT.md)**.
+
+## Privacy notes
+
+- Native on-device transcription does not require a paid transcription API.
+- iCloud history requires the configured iCloud container and valid signing.
+- The optional Mac mini fallback sends audio to the configured private server.
+- Cloudflare web transcription sends audio to Workers AI for processing even
+  though the application does not persist the original file.
+- Telegram delivery is optional and places a transcript on Telegram's servers.
+- Never commit Cloudflare secrets, Telegram bot tokens, Apple signing files, or
+  private server credentials.
+
+## Verification used for this repository
+
+```sh
+cd WhisperCore && swift build && swift test
+cd StealthWhisperMac && xcodegen generate && xcodebuild -project StealthWhisperMac.xcodeproj -scheme StealthWhisperMac -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO build
+cd StealthWhisperiOS && xcodegen generate && xcodebuild -project StealthWhisper.xcodeproj -scheme StealthWhisper -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
+cd StealthWhisperWeb && npm test && npm run check && npx wrangler deploy --dry-run
+```
+
+These checks verify compilation and automated tests. Real microphone input,
+Watch-to-iPhone transfer, keyboard insertion, iCloud sync, and TestFlight
+installation still require physical-device testing with correctly signed apps.
